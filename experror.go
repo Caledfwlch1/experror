@@ -22,7 +22,14 @@ type expanderror struct {
 
 var _ ExpError = (*expanderror)(nil)
 
-var ()
+var (
+	// example
+	FileNotFound = New(1, Critical, "file not found", "file not fount in this directory")
+)
+
+func New(code, lvl int, short, long string) ExpError {
+	return &expanderror{code: code, level: lvl, short: short, long: long}
+}
 
 func (e *expanderror) Error() string {
 	return e.short
